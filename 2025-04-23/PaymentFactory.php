@@ -35,7 +35,7 @@ abstract class PaymentFactory {
     abstract public function createProcessor(): PaymentProcessor;
     
     // テンプレートメソッド
-    public function processPayment($amount) {
+    public function pay($amount) {
         $processor = $this->createProcessor();
         return $processor->processPayment($amount);
     }
@@ -80,7 +80,7 @@ function processOrder($paymentType, $amount) {
             throw new Exception("サポートされていない決済方法: {$paymentType}");
     }
     
-    $factory->processPayment($amount);
+    $factory->pay($amount);
 }
 
 // テスト実行
