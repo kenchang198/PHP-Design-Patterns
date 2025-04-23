@@ -56,7 +56,7 @@ PHP-Design-Patterns/
 
 | 日付 | パターン | コード | ブログ記事 |
 | ---- | -------- | ------ | ---------- |
-|      |          |        |            |
+| 2025-04-23 | Factory Method | [コード](./2025-04-23/) | [ブログ記事](https://github.com/kenchang198/PHP-Design-Patterns_blog/blob/main/2025-04-23/day2_factory_method_pattern.md) |
 
 ## 実装済みパターン
 
@@ -70,7 +70,7 @@ PHP-Design-Patterns/
 ### 生成パターン (Creational Patterns)
 
 - [x] Singleton
-- [ ] Factory Method
+- [x] Factory Method
 - [ ] Abstract Factory
 - [ ] Builder
 - [ ] Prototype
