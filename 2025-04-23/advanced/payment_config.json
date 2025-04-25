@@ -1,0 +1,28 @@
+{
+    "credit_card": {
+        "class": "CreditCardFactory",
+        "params": {
+            "api_key": "production_key_123"
+        }
+    },
+    "paypal": {
+        "class": "PayPalFactory",
+        "params": {
+            "client_id": "client_456",
+            "secret": "secret_789"
+        }
+    },
+    "bank_transfer": {
+        "class": "BankTransferFactory",
+        "params": {
+            "bank_code": "JPBANK",
+            "account_number": "12345678"
+        }
+    },
+    "bitcoin": {
+        "class": "BitcoinFactory",
+        "params": {
+            "wallet_address": "btc_wallet_xyz"
+        }
+    }
+}
