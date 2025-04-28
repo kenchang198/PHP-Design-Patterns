@@ -8,18 +8,15 @@ require_once 'PaymentFactory.php';
  */
 class PaymentFactoryProvider {
     private static $config = [
-        'credit_card' => [
-            'class' => CreditCardFactory::class,
-            'params' => ['api_key' => 'production_key_123']
-        ],
-        'paypal' => [
-            'class' => PayPalFactory::class,
-            'params' => ['client_id' => 'client_456', 'secret' => 'secret_789']
-        ],
-        'bank_transfer' => [
-            'class' => BankTransferFactory::class,
-            'params' => ['bank_code' => 'JPBANK', 'account_number' => '12345678']
-        ]
+        // default
+        // 'credit_card' => [
+        //     'class' => CreditCardFactory::class,
+        //     'params' => ['api_key' => 'production_key_789']
+        // ],
+        // 'paypal' => [
+        //     'class' => PayPalFactory::class,
+        //     'params' => ['client_id' => 'client_456', 'secret' => 'secret_789']
+        // ],
     ];
     
     /**
@@ -69,8 +66,16 @@ class PaymentFactoryProvider {
             foreach ($reflection->getConstructor()->getParameters() as $param) {
                 $paramName = $param->getName();
                 if (isset($params[$paramName])) {
+                    // 完全一致
                     $constructorParams[] = $params[$paramName];
+                } elseif (isset($params[self::toSnakeCase($paramName)])) {
+                    // キャメルケース→スネークケース変換で一致
+                    $constructorParams[] = $params[self::toSnakeCase($paramName)];
+                } elseif (isset($params[self::toCamelCase($paramName)])) {
+                    // スネークケース→キャメルケース変換で一致
+                    $constructorParams[] = $params[self::toCamelCase($paramName)];
                 } elseif ($param->isDefaultValueAvailable()) {
+                    // 一致するパラメータがなければデフォルト値を使用
                     $constructorParams[] = $param->getDefaultValue();
                 } else {
                     throw new Exception("必須パラメータが不足しています: {$paramName}");
@@ -79,6 +84,26 @@ class PaymentFactoryProvider {
         }
         
         return $reflection->newInstanceArgs($constructorParams);
+    }
+    
+    /**
+     * キャメルケースからスネークケースに変換
+     *
+     * @param string $input キャメルケースの文字列
+     * @return string スネークケースの文字列
+     */
+    private static function toSnakeCase($input) {
+        return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $input));
+    }
+    
+    /**
+     * スネークケースからキャメルケースに変換
+     *
+     * @param string $input スネークケースの文字列
+     * @return string キャメルケースの文字列
+     */
+    private static function toCamelCase($input) {
+        return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $input))));
     }
     
     /**

@@ -45,10 +45,10 @@ function processOrderWithProvider($paymentType, $amount) {
 echo "\n決済処理を実行します:\n";
 processOrderWithProvider('credit_card', 5000);
 processOrderWithProvider('paypal', 3000);
-processOrderWithProvider('bank_transfer', 10000);
-processOrderWithProvider('bitcoin', 2000);
-processOrderWithProvider('apple_pay', 7000);
+// processOrderWithProvider('bank_transfer', 10000);
+// processOrderWithProvider('bitcoin', 2000);
+// processOrderWithProvider('apple_pay', 7000);
 
 // エラーケース
-echo "\nエラーケース:\n";
-processOrderWithProvider('unknown_method', 1000); 
+// echo "\nエラーケース:\n";
+// processOrderWithProvider('unknown_method', 1000); 
