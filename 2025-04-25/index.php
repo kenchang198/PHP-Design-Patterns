@@ -60,12 +60,12 @@ if ($dbType === 'mysql') {
 }
 
 // クライアントコードはどのデータベースを使うか知らなくても良い
-$client = new DatabaseClient($factory);
-$client->connect();
+$dbClient = new DatabaseClient($factory);
+$dbClient->connect();
 
-echo $client->getConnectionInfo() . PHP_EOL;
-echo $client->executeQuery('users', ['id', 'name', 'email']) . PHP_EOL;
-echo $client->insertData('users', [
+echo $dbClient->getConnectionInfo() . PHP_EOL;
+echo $dbClient->executeQuery('users', ['id', 'name', 'email']) . PHP_EOL;
+echo $dbClient->insertData('users', [
     'name' => 'John Doe',
     'email' => 'john@example.com',
     'age' => 30
