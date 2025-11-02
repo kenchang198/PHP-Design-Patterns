@@ -61,6 +61,7 @@ PHP-Design-Patterns/
 | 2025-04-23 | Factory Method (Advanced) | [コード](./2025-04-23/advanced/) | [ブログ記事](https://github.com/kenchang198/PHP-Design-Patterns_blog/blob/main/2025-04-23/advanced/factory_method_advanced.md) |
 | 2025-04-25 | Abstract Factory          | [コード](./2025-04-25/)          | [ブログ記事](https://github.com/kenchang198/PHP-Design-Patterns_blog/blob/main/2025-04-25/abstract_factory_pattern.md)         |
 | 2025-05-09 | Builder                   | [コード](./2025-05-09/)          | [ブログ記事](https://github.com/kenchang198/PHP-Design-Patterns_blog/blob/main/2025-05-09/builder_pattern.md)                  |
+| 2025-05-24 | Prototype                 | [コード](./2025-05-24/)          | [ブログ記事](https://github.com/kenchang198/PHP-Design-Patterns_blog/blob/main/2025-05-24/prototype_pattern.md)                |
 
 ## 実装済みパターン
 
@@ -77,7 +78,7 @@ PHP-Design-Patterns/
 - [x] Factory Method
 - [x] Abstract Factory
 - [x] Builder
-- [ ] Prototype
+- [x] Prototype
 
 ### 構造パターン (Structural Patterns)
 
