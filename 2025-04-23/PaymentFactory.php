@@ -62,34 +62,37 @@ class BankTransferFactory extends PaymentFactory {
     }
 }
 
-// 使用例
-function processOrder($paymentType, $amount) {
-    $factory = null;
-    
+
+// Factoryインスタンスを生成する関数
+function createPaymentFactory($paymentType): PaymentFactory {
     switch ($paymentType) {
         case 'credit_card':
-            $factory = new CreditCardFactory();
-            break;
+            return new CreditCardFactory();
         case 'paypal':
-            $factory = new PayPalFactory();
-            break;
+            return new PayPalFactory();
         case 'bank_transfer':
-            $factory = new BankTransferFactory();
-            break;
+            return new BankTransferFactory();
         default:
             throw new Exception("サポートされていない決済方法: {$paymentType}");
     }
-    
+}
+
+function executePayment(PaymentFactory $factory, $amount) {
     $factory->pay($amount);
 }
 
-// テスト実行
 try {
-    processOrder('credit_card', 5000);
-    processOrder('paypal', 3000);
-    processOrder('bank_transfer', 10000);
+    $factory1 = createPaymentFactory('credit_card');
+    executePayment($factory1, 5000);
+    
+    $factory2 = createPaymentFactory('paypal');
+    executePayment($factory2, 3000);
+    
+    $factory3 = createPaymentFactory('bank_transfer');
+    executePayment($factory3, 10000);
+    
     // エラーケース
-    // processOrder('bitcoin', 2000);
+    // $factory4 = createPaymentFactory('bitcoin');
 } catch (Exception $e) {
     echo "エラー: " . $e->getMessage() . "\n";
 }
